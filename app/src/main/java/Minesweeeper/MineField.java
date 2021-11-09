@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import org.checkerframework.checker.units.qual.min;
 
 class MineField extends Frame{
-
+    private int buttonsX;
+    private int buttonsY;
     MineField(int width, int height){
-        this.setSize(height*10,width*10);//frame size set by arguments
+        this.setSize(height*30 + 60,width*30 + 60);//frame size set by arguments
+        this.buttonsX = width;
+        this.buttonsY = height; 
         
     }
     public void initializeField(int bombAmount) {
@@ -21,7 +24,7 @@ class MineField extends Frame{
         System.out.println("getrandomworks");
         ArrayList<Integer> numList = new ArrayList<>();
             while (numList.size() < amount) {
-                long randomNum = Math.round(Math.random() * ((this.getHeight() / 10) * (this.getWidth()/10)));
+                long randomNum = Math.round(Math.random() * (buttonsX * buttonsY));
                 if (!numList.contains(randomNum)) {
                     numList.add((int)randomNum);
                 }
@@ -32,13 +35,14 @@ class MineField extends Frame{
     private ArrayList<ArrayList<MineButton>> createButtons(ArrayList<Integer> bombLocations) {
         System.out.println("createbuttons works");
         ArrayList<ArrayList<MineButton>> buttonList = new ArrayList<ArrayList<MineButton>>();
-        for (int i = 0; i < this.getWidth() / 10; i++) {
+        for (int i = 0; i < buttonsX; i++) {
             buttonList.add(new ArrayList<MineButton>());
-            for (int j = 0; j < this.getHeight() / 10; j++) {
+            for (int j = 0; j < buttonsY; j++) {
                 boolean isBomb = bombLocations.contains(i * j);
                 MineButton mineButton = new MineButton(isBomb);
+                mineButton.addActionListener(mineButton.getThisAction());
                 buttonList.get(i).add(mineButton);
-                mineButton.setBounds(i*30,j*30,30,30);    
+                mineButton.setBounds((i + 1) *30,(j + 1)*30,30,30);    
                 this.add(mineButton);
             }
         }
