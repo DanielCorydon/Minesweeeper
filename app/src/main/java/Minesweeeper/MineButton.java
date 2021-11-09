@@ -11,11 +11,10 @@ public class MineButton extends Button {
     private ArrayList<MineButton> nearbyButtons;    //This arraylist contains up to eight MineButtons, which represents the adjacent MineButtons to this one
     private ActionListener buttonpress;             //This Actionlistener will be used to press the button
 
-    public MineButton(boolean isBomb, ArrayList<MineButton> nearbyButtons) { //Constructor
+    public MineButton(boolean isBomb) { //Constructor
         super("X");
         this.isBomb = isBomb;
         int nearbyBombs = 0;
-        this.nearbyButtons = nearbyButtons;
         setActionListener();
 
     }
@@ -62,4 +61,7 @@ public class MineButton extends Button {
         };
     }
 
+    public void getNeighbors(ArrayList<MineButton> neighbors) {
+        nearbyButtons = neighbors;
+    }
 }
