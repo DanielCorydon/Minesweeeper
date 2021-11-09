@@ -9,12 +9,15 @@ public class MineButton extends Button {
     private boolean isBomb;                         //This boolean checks if THIS MineButton is a bomb
     private int nearbyBombs;                        //This int tracks how many of the nearbyButtons are bombs
     private ArrayList<MineButton> nearbyButtons;    //This arraylist contains up to eight MineButtons, which represents the adjacent MineButtons to this one
+    private ActionListener buttonpress;             //This Actionlistener will be used to press the button
 
-    public MineButton(String name, boolean isBomb) { //Constructor
-        super(name);
+    public MineButton(boolean isBomb, ArrayList<MineButton> nearbyButtons) { //Constructor
+        super("X");
         this.isBomb = isBomb;
         int nearbyBombs = 0;
-        nearbyButtons = new ArrayList<>();
+        this.nearbyButtons = nearbyButtons;
+        setActionListener();
+
     }
 
     public boolean getIsBomb() {                    //Returns true / false depending on whether this MineButton is a bomb
@@ -46,6 +49,17 @@ public class MineButton extends Button {
         }
     }
 
-    
+    public ActionListener getThisAction() {
+        return buttonpress;
+    }
+
+    public void setActionListener() {
+        //ACTION LISTENER 1
+        buttonpress = new ActionListener() {
+            public void actionPerformed (ActionEvent e) {
+                 System.out.println("This Works");
+            }
+        };
+    }
 
 }
