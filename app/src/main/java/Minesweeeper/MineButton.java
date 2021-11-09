@@ -51,7 +51,7 @@ public class MineButton extends Button {
 
         else {                                           //If no nearby buttons are bombs
             
-            clickNearby();
+           // clickNearby();
         }
     }
 
