@@ -27,9 +27,4 @@ class MineField extends Frame{
         setVisible(true);//now frame willbe visible, bydefault not visible
 
     }
-    public static void main(String args[]){
-
-    MineField f=new MineField();
-
-    }
 }
