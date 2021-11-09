@@ -15,7 +15,6 @@ public class MineButton extends Button {
     public MineButton(boolean isBomb) { //Constructor
         super("X");
         this.isBomb = isBomb;
-        int nearbyBombs = 0;
         setActionListener();
         isClicked = false;
 
@@ -27,12 +26,6 @@ public class MineButton extends Button {
 
     public int getNearbyBombs() {                   //Returns int of how many Buttons adjacent are bombs.
         return nearbyBombs;
-    }
-
-    public void addNearbyButtons(MineButton mineButton) {   //Adds nearbyButtons to the arraylist
-        if (nearbyButtons.size()<9) {
-            nearbyButtons.add(mineButton);
-        }
     }
 
     public void buttonClicked() {                       //Method to call when the button is clicked. Should contain three logic statements, one if it is a bomb, one if it has nearby bombs, and one if there are no nearby bombs
@@ -55,8 +48,8 @@ public class MineButton extends Button {
 
         else {                                           //If no nearby buttons are bombs
             this.setLabel(" ");
-            clickNearby();
             this.isClicked=true;
+            clickNearby();
         }
         }
         
@@ -70,7 +63,7 @@ public class MineButton extends Button {
     public void clickNearby() {                         //Click all nearby buttons (this is only called if none of them are bombs)
         int counter = 0;
         for (MineButton mineButton : nearbyButtons) {
-            if (mineButton.getClicked()==false && mineButton.isBomb==false) {
+            if (nearbyButtons.get(counter).getClicked()==false && mineButton.isBomb==false) {
             nearbyButtons.get(counter).buttonClicked();
             }
             counter++;
