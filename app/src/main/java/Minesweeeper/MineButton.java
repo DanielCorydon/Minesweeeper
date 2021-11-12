@@ -32,7 +32,7 @@ public class MineButton extends Button {
         
         if (this.isClicked==false) {                         //Checks if this button is clicked
 
-        if (isBomb==true) {                                     //If this is a bomb
+        if (isBomb) {                                     //If this is a bomb
         
             System.out.println("YOU ARE DEAD HAHA FAILURE");
             this.isClicked=true;
