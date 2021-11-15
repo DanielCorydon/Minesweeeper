@@ -20,12 +20,25 @@ public class MineButton extends Button {
 
     }
 
+    
+    public boolean getClicked() {
+        return isClicked;                               //Returns whether the button is clicked or not.
+    }       
+
+    public void buttonIsClicked(boolean isClicked) {
+        this.isClicked = isClicked;                     //Mutator method to change if the button is clicked
+    }
+
     public boolean getIsBomb() {                    //Returns true / false depending on whether this MineButton is a bomb
         return isBomb;
     }
 
     public int getNearbyBombs() {                   //Returns int of how many Buttons adjacent are bombs.
         return nearbyBombs;
+    }
+
+    public ActionListener getThisAction() {             //This returns the actionlistener which is used for the button press
+        return buttonpress;
     }
 
     public void buttonClicked() {                       //Method to call when the button is clicked. Should contain three logic statements, one if it is a bomb, one if it has nearby bombs, and one if there are no nearby bombs
@@ -56,10 +69,6 @@ public class MineButton extends Button {
 
     }
 
-    public boolean getClicked() {
-        return isClicked;
-    }
-
     public void clickNearby() {                         //Click all nearby buttons (this is only called if none of them are bombs)
         int counter = 0;
         for (MineButton mineButton : nearbyButtons) {
@@ -68,10 +77,6 @@ public class MineButton extends Button {
             }
             counter++;
         }
-    }
-
-    public ActionListener getThisAction() {             //This returns the actionlistener which is used for the button press
-        return buttonpress;
     }
 
     public void setActionListener() {                   //This sets the button press by creating a new action listener

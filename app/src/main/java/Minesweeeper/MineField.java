@@ -4,8 +4,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.*;
 
-import org.checkerframework.checker.units.qual.min;
-import org.w3c.dom.events.MouseEvent;
+//      import org.checkerframework.checker.units.qual.min; 
+//      import org.w3c.dom.events.MouseEvent;
+//      ARE THESE TWO USED?
 
 class MineField extends Frame {
     private int buttonsX;
@@ -106,8 +107,6 @@ class MineField extends Frame {
                     if (buttonList.get(xCord-1).get(yCord-1).getLabel()!="F") { //checks if it isnt a flag
                         if (buttonList.get(xCord-1).get(yCord-1).getIsBomb()) { //if it is a bomb execute this and add to amount of bombs
                             amountCorrectBombs+=1;
-                            System.out.println(amountCorrectBombs);             //FOR TESTING HOW MANY BOMBS ARE FLAGGED
-
                             if (amountCorrectBombs==bombAmount) {               //Win condition
 
                                 System.out.println("Congratulations, you won!"); 
@@ -120,17 +119,18 @@ class MineField extends Frame {
                         }
                         
                         buttonList.get(xCord-1).get(yCord-1).setLabel("F");     //SETS BUTTON TO F EVEN IF IT ISNT A BOMB
+                        buttonList.get(xCord-1).get(yCord-1).buttonIsClicked(true);
                     }
 
                     else {
                         if (buttonList.get(xCord-1).get(yCord-1).getIsBomb()) { //REMOVES F FROM BUTTON also removes amount of correct bombs if it was a bomb
                         amountCorrectBombs-=1;
-                        System.out.println(amountCorrectBombs);
                         }
                         else {
                             amountCorrectBombs+=1;
                         }
                         buttonList.get(xCord-1).get(yCord-1).setLabel("X");     //Returns the button to X
+                        buttonList.get(xCord-1).get(yCord-1).buttonIsClicked(false);
                     }
                 }
                 else {
@@ -138,20 +138,15 @@ class MineField extends Frame {
                     System.out.println("You can only flag buttons which aren't clicked!");  //If an already pressed button is flagged.
                 
                 }
-
-                                 
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-
+                System.out.println(amountCorrectBombs);
                 }
             }
 
         };
-    }
+    }                   //END OF MOUSE LISTENER CLASS DEF
+
+
+
+    
 
 }
