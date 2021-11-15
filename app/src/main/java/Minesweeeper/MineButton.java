@@ -2,17 +2,22 @@ package Minesweeeper;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+
 /**
  * MineButton
  */
+
 public class MineButton extends Button {
-    private boolean isBomb;                         //This boolean checks if THIS MineButton is a bomb
+    
     private int nearbyBombs;                        //This int tracks how many of the nearbyButtons are bombs
+    
     private ArrayList<MineButton> nearbyButtons;    //This arraylist contains up to eight MineButtons, which represents the adjacent MineButtons to this one
     private ActionListener buttonpress;             //This Actionlistener will be used to press the button
-    private boolean isClicked;
 
-    public MineButton(boolean isBomb) { //Constructor
+    private boolean isClicked;                      //This boolean checks whether this button has been clicked
+    private boolean isBomb;                         //This boolean checks if THIS MineButton is a bomb
+
+    public MineButton(boolean isBomb) {             //Constructor
         super("X");
         this.isBomb = isBomb;
         setActionListener();
@@ -29,11 +34,11 @@ public class MineButton extends Button {
         this.isClicked = isClicked;                     //Mutator method to change if the button is clicked
     }
 
-    public boolean getIsBomb() {                    //Returns true / false depending on whether this MineButton is a bomb
+    public boolean getIsBomb() {                        //Returns true / false depending on whether this MineButton is a bomb
         return isBomb;
     }
 
-    public int getNearbyBombs() {                   //Returns int of how many Buttons adjacent are bombs.
+    public int getNearbyBombs() {                     //Returns int of how many Buttons adjacent are bombs.
         return nearbyBombs;
     }
 

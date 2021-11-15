@@ -18,11 +18,14 @@ class MineField extends Frame {
     private int amountCorrectBombs;
     private int bombAmount;
 
+    
+
     MineField(int width, int height) {
         this.setSize(height * 30 + 60, width * 30 + 60);// frame size set by arguments
         this.buttonsX = width;
         this.buttonsY = height;
         setMouseListener();                             //Creates mouseAdapter for the right click to track flags.
+        makeWindowClosable();
 
     }
 
@@ -107,7 +110,7 @@ class MineField extends Frame {
                     if (buttonList.get(xCord-1).get(yCord-1).getLabel()!="F") { //checks if it isnt a flag
                         if (buttonList.get(xCord-1).get(yCord-1).getIsBomb()) { //if it is a bomb execute this and add to amount of bombs
                             amountCorrectBombs+=1;
-                            if (amountCorrectBombs==bombAmount) {               //Win condition
+                            if (gameWon()) {               //Win condition
 
                                 System.out.println("Congratulations, you won!"); 
                             
@@ -144,6 +147,26 @@ class MineField extends Frame {
 
         };
     }                   //END OF MOUSE LISTENER CLASS DEF
+
+    public boolean gameWon() {
+        if (amountCorrectBombs==bombAmount) {
+            EndField end = new EndField(true);
+            end.setLayout(null);
+            end.setVisible(true);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void makeWindowClosable() {
+        addWindowListener (new WindowAdapter() {    
+            public void windowClosing (WindowEvent e) {    
+                dispose();    
+            }    
+        });    
+    }
 
 
 
