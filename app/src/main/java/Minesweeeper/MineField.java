@@ -25,7 +25,7 @@ class MineField extends Frame {
         this.buttonsX = width;
         this.buttonsY = height;
         setMouseListener();                             //Creates mouseAdapter for the right click to track flags.
-        makeWindowClosable();
+        makeWindowClosable();                           //Adds window closing functionality.
 
     }
 
@@ -91,7 +91,7 @@ class MineField extends Frame {
             }
         }
     }
-
+                                                       //CAN A LOT OF THIS SECTION GO TO THE MINEBUTTON CLASS?
     public void setMouseListener() {                   //This sets the rightbutton press by creating a new MouseListener
                                                        //Mouse Adapter
         buttonPressedRight = new MouseAdapter() {
@@ -150,7 +150,7 @@ class MineField extends Frame {
 
     public boolean gameWon() {
         if (amountCorrectBombs==bombAmount) {
-            EndField end = new EndField(true);
+            EndField end = new EndField(true);              //Checks victory condition and makes new endscreen window
             end.setLayout(null);
             end.setVisible(true);
             return true;
@@ -161,7 +161,7 @@ class MineField extends Frame {
     }
 
     public void makeWindowClosable() {
-        addWindowListener (new WindowAdapter() {    
+        addWindowListener (new WindowAdapter() {            //Makes main window closable
             public void windowClosing (WindowEvent e) {    
                 dispose();    
             }    
