@@ -2,7 +2,7 @@ package Minesweeeper;
 import java.awt.*;
 import java.util.ArrayList;
 
-import Minesweeeper.Buttons.MineButton;
+import Minesweeeper.Buttons.*;
 
 import java.awt.event.*;
 
