@@ -162,7 +162,9 @@ class MineField extends Frame {
         });    
     }
 
-
+    public hey(){
+        
+    }
 
     
 
