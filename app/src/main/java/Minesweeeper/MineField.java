@@ -46,6 +46,9 @@ class MineField extends Frame {
                 numList.add((int) randomNum);
             }
         }
+        for (Integer integer : numList) {
+            System.out.println(integer);
+        }
         return numList;
     }
 
@@ -57,7 +60,11 @@ class MineField extends Frame {
         for (int i = 0; i < buttonsX; i++) {
             buttonList.add(new ArrayList<MineButton>());
             for (int j = 0; j < buttonsY; j++) {
-                boolean isBomb = bombLocations.contains(i * j);
+                boolean isBomb = bombLocations.contains(i*buttonsX+(j));
+                
+
+                    System.out.println(i*buttonsX+(j));
+                
                 MineButton mineButton = new MineButton(isBomb);
                 mineButton.addActionListener(mineButton.getThisAction());   //Adds left click
                 mineButton.addMouseListener(buttonPressedRight);            //Adds right click
