@@ -1,5 +1,4 @@
 package Minesweeeper;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.*;
@@ -18,36 +17,29 @@ class MineField extends Frame {
     private int amountCorrectBombs;
     private int bombAmount;
 
-    
-
     MineField(int width, int height) {
         this.setSize(height * 30 + 60, width * 30 + 60);// frame size set by arguments
         this.buttonsX = width;
         this.buttonsY = height;
         setMouseListener();                             //Creates mouseAdapter for the right click to track flags.
         makeWindowClosable();                           //Adds window closing functionality.
-
     }
 
-    public void initializeField(int bombAmount) {
-        this.bombAmount = bombAmount;
-        this.numList = getRandomList(bombAmount);
-        this.bombList = createButtons(numList);
-        setNearbyButtons(bombList);
+    public void initializeField(int bombAmount) {       // Main function which initiatiates the entire field with buttons
+        this.bombAmount = bombAmount;                   
+        this.numList = getRandomList(bombAmount);       // Get list of [bombAmount] random numbers between 0 and buttonX * ButtonsY
+        this.bombList = createButtons(numList);         // Make an ArrayList of ArrayLists containing MineButtons
+        setNearbyButtons(bombList);                     // Adds the field of NearbyBombs to the existing buttons
     }
 
     // Creates ArrayList of [amount] Integers from 0 to [limit]
     private ArrayList<Integer> getRandomList(int amount) {
-        System.out.println("getrandomworks");
         ArrayList<Integer> numList = new ArrayList<>();
         while (numList.size() < amount) {
-            long randomNum = Math.round(Math.random() * (buttonsX * buttonsY));
+            long randomNum = Math.round(Math.random() * (buttonsX * buttonsY)); // Get random number between 0 and buttonX * ButtonsY
             if (!numList.contains(randomNum)) {
                 numList.add((int) randomNum);
             }
-        }
-        for (Integer integer : numList) {
-            System.out.println(integer);
         }
         return numList;
     }
@@ -55,23 +47,17 @@ class MineField extends Frame {
     // Creates an ArrayList of ArrayLists containg boolean values based on the
     // parameter bombLocations
     private ArrayList<ArrayList<MineButton>> createButtons(ArrayList<Integer> bombLocations) {
-        System.out.println("createbuttons works");
         this.buttonList = new ArrayList<ArrayList<MineButton>>();
         for (int i = 0; i < buttonsX; i++) {
             buttonList.add(new ArrayList<MineButton>());
             for (int j = 0; j < buttonsY; j++) {
                 boolean isBomb = bombLocations.contains(i*buttonsX+(j));
-                
-
-                    System.out.println(i*buttonsX+(j));
-                
                 MineButton mineButton = new MineButton(isBomb);
-                mineButton.addActionListener(mineButton.getThisAction());   //Adds left click
-                mineButton.addMouseListener(buttonPressedRight);            //Adds right click
-                buttonList.get(i).add(mineButton);
-                mineButton.setBounds((i + 1) * 30, (j + 1) * 30, 30, 30);
-                this.add(mineButton);
-                
+                mineButton.addActionListener(mineButton.getThisAction());   // Adds left click
+                mineButton.addMouseListener(buttonPressedRight);            // Adds right click
+                buttonList.get(i).add(mineButton); 
+                mineButton.setBounds((i + 1) * 30, (j + 1) * 30, 30, 30);   // Set position and size of button
+                this.add(mineButton);                                       // Add the button to the MineField
             }
         }
         return buttonList;
@@ -114,44 +100,43 @@ class MineField extends Frame {
                     int yCord = Integer.parseInt(getInfo[2])/30;        //Y coordinate
                     if (!buttonList.get(xCord-1).get(yCord-1).getClicked()) {   //checks if the button has been clicked already
 
-                    if (buttonList.get(xCord-1).get(yCord-1).getLabel()!="F") { //checks if it isnt a flag
-                        if (buttonList.get(xCord-1).get(yCord-1).getIsBomb()) { //if it is a bomb execute this and add to amount of bombs
-                            amountCorrectBombs+=1;
-                            if (gameWon()) {               //Win condition
+                        if (buttonList.get(xCord-1).get(yCord-1).getLabel()!="F") { //checks if it isnt a flag
+                            if (buttonList.get(xCord-1).get(yCord-1).getIsBomb()) { //if it is a bomb execute this and add to amount of bombs
+                                amountCorrectBombs+=1;
+                                if (gameWon()) {               //Win condition
 
-                                System.out.println("Congratulations, you won!"); 
-                            
+                                    System.out.println("Congratulations, you won!"); 
+                                
+                                }
+
                             }
-
+                            else {
+                                amountCorrectBombs-=1;
+                            }
+                            
+                            buttonList.get(xCord-1).get(yCord-1).setLabel("F");     //SETS BUTTON TO F EVEN IF IT ISNT A BOMB
+                            buttonList.get(xCord-1).get(yCord-1).buttonIsClicked(true);
                         }
+
                         else {
-                            amountCorrectBombs-=1;
+                            if (buttonList.get(xCord-1).get(yCord-1).getIsBomb()) { //REMOVES F FROM BUTTON also removes amount of correct bombs if it was a bomb
+                                amountCorrectBombs-=1;
+                            }
+                            else {
+                                amountCorrectBombs+=1;
+                            }
+                            buttonList.get(xCord-1).get(yCord-1).setLabel("X");     //Returns the button to X
+                            buttonList.get(xCord-1).get(yCord-1).buttonIsClicked(false);
                         }
-                        
-                        buttonList.get(xCord-1).get(yCord-1).setLabel("F");     //SETS BUTTON TO F EVEN IF IT ISNT A BOMB
-                        buttonList.get(xCord-1).get(yCord-1).buttonIsClicked(true);
                     }
-
                     else {
-                        if (buttonList.get(xCord-1).get(yCord-1).getIsBomb()) { //REMOVES F FROM BUTTON also removes amount of correct bombs if it was a bomb
-                        amountCorrectBombs-=1;
-                        }
-                        else {
-                            amountCorrectBombs+=1;
-                        }
-                        buttonList.get(xCord-1).get(yCord-1).setLabel("X");     //Returns the button to X
-                        buttonList.get(xCord-1).get(yCord-1).buttonIsClicked(false);
-                    }
-                }
-                else {
 
-                    System.out.println("You can only flag buttons which aren't clicked!");  //If an already pressed button is flagged.
-                
-                }
+                        System.out.println("You can only flag buttons which aren't clicked!");  //If an already pressed button is flagged.
+                    
+                    }
                 System.out.println(amountCorrectBombs);
                 }
             }
-
         };
     }                   //END OF MOUSE LISTENER CLASS DEF
 
