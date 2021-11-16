@@ -18,6 +18,7 @@ boolean isWon;
         this.setSize(500, 250);
         makeWindowClosable();
         createWinLabels();
+        createPlayAgain();
         this.setLayout(null);
         this.setVisible(true);
 
@@ -46,7 +47,7 @@ boolean isWon;
     public void createPlayAgain() {
 
         Button win = new Button("Play again");
-        win.setBounds(250, 0, 200, 150);
+        win.setBounds(150, 100, 200, 150);
         
         this.add(win);
 
