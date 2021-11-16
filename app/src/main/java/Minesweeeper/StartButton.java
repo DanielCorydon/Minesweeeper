@@ -2,7 +2,7 @@ package Minesweeeper;
 import java.awt.*;
 
 
-public class StartButton extends Component implements Accessible{
+/* public class StartButton extends Component implements Accessible{
 
     public StartButton(){
 
@@ -22,7 +22,7 @@ public class StartButton extends Component implements Accessible{
     f.setLayout(null);    
     f.setVisible(true);     
 }   
-
+ */
 
 /**
  * bad practice, but this could be the alternative way of starting + storing usernames :
@@ -38,4 +38,4 @@ public class StartButton extends Component implements Accessible{
 
 
 
-}
+//}

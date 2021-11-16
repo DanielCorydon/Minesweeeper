@@ -18,18 +18,18 @@ class MineField extends Frame {
     private int bombAmount;
 
     MineField(int width, int height) {
-        this.setSize(height * 30 + 60, width * 30 + 60);// frame size set by arguments
+        this.setSize(height * 30 + 60, width * 30 + 60);    // frame size set by arguments
         this.buttonsX = width;
         this.buttonsY = height;
-        setMouseListener();                             //Creates mouseAdapter for the right click to track flags.
-        makeWindowClosable();                           //Adds window closing functionality.
+        setMouseListener();                                 //Creates mouseAdapter for the right click to track flags.
+        makeWindowClosable();                               //Adds window closing functionality.
     }
 
-    public void initializeField(int bombAmount) {       // Main function which initiatiates the entire field with buttons
+    public void initializeField(int bombAmount) {           // Main function which initiatiates the entire field with buttons
         this.bombAmount = bombAmount;                   
-        this.numList = getRandomList(bombAmount);       // Get list of [bombAmount] random numbers between 0 and buttonX * ButtonsY
-        this.bombList = createButtons(numList);         // Make an ArrayList of ArrayLists containing MineButtons
-        setNearbyButtons(bombList);                     // Adds the field of NearbyBombs to the existing buttons
+        this.numList = getRandomList(bombAmount);           // Get list of [bombAmount] random numbers between 0 and buttonX * ButtonsY
+        this.bombList = createButtons(numList);             // Make an ArrayList of ArrayLists containing MineButtons
+        setNearbyButtons(bombList);                         // Adds the field of NearbyBombs to the existing buttons
     }
 
     // Creates ArrayList of [amount] Integers from 0 to [limit]
@@ -98,7 +98,7 @@ class MineField extends Frame {
                     String[] getInfo = buttonInfo.split(",");           //Splits it and gets coordinates
                     int xCord = Integer.parseInt(getInfo[1])/30;        //X coordinate
                     int yCord = Integer.parseInt(getInfo[2])/30;        //Y coordinate
-                    if (!buttonList.get(xCord-1).get(yCord-1).getClicked()) {   //checks if the button has been clicked already
+                    if (!buttonList.get(xCord-1).get(yCord-1).getClicked() || buttonList.get(xCord-1).get(yCord-1).getLabel()=="F") {   //checks if the button has been clicked already
 
                         if (buttonList.get(xCord-1).get(yCord-1).getLabel()!="F") { //checks if it isnt a flag
                             if (buttonList.get(xCord-1).get(yCord-1).getIsBomb()) { //if it is a bomb execute this and add to amount of bombs
@@ -118,7 +118,7 @@ class MineField extends Frame {
                             buttonList.get(xCord-1).get(yCord-1).buttonIsClicked(true);
                         }
 
-                        else {
+                        else if (buttonList.get(xCord-1).get(yCord-1).getLabel()=="F") {
                             if (buttonList.get(xCord-1).get(yCord-1).getIsBomb()) { //REMOVES F FROM BUTTON also removes amount of correct bombs if it was a bomb
                                 amountCorrectBombs-=1;
                             }
