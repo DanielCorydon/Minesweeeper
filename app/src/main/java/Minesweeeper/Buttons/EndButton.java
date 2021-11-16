@@ -17,7 +17,7 @@ public class EndButton extends Button {
         // ACTION LISTENER 1
         EndAction = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //Action that button will perform when clicked
+                Runtime.getRuntime().exit(0);
             }
         };
         return EndAction;
