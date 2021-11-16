@@ -17,6 +17,7 @@ public class MineButton extends Button {
     private boolean isClicked;                      //This boolean checks whether this button has been clicked
     private boolean isBomb;                         //This boolean checks if THIS MineButton is a bomb
 
+
     public MineButton(boolean isBomb) {             //Constructor
         super("X");
         this.isBomb = isBomb;
@@ -52,7 +53,7 @@ public class MineButton extends Button {
 
         if (isBomb) {                                     //If this is a bomb
         
-            System.out.println("YOU ARE DEAD HAHA FAILURE");
+            System.out.println("Boom goes the mine - You are dead.");
             this.isClicked=true;
         
         }
