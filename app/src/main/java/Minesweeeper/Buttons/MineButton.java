@@ -1,7 +1,9 @@
-package Minesweeeper;
+package Minesweeeper.Buttons;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+
+import Minesweeeper.EndField;
 
 /**
  * MineButton
@@ -49,8 +51,10 @@ public class MineButton extends Button {
 
         if (isBomb) {                                     //If this is a bomb
         
+            
             System.out.println("Boom goes the mine - You are dead.");
             this.isClicked=true;
+            EndField endgame = new EndField(false);
         
         }
         

@@ -1,6 +1,9 @@
 package Minesweeeper;
 import java.awt.*;
 import java.util.ArrayList;
+
+import Minesweeeper.Buttons.MineButton;
+
 import java.awt.event.*;
 
 //      import org.checkerframework.checker.units.qual.min; 

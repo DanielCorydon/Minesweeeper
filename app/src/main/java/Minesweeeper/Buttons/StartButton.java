@@ -1,4 +1,4 @@
-package Minesweeeper;
+package Minesweeeper.Buttons;
 import java.awt.*;
 
 

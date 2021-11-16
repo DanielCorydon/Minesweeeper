@@ -14,14 +14,25 @@ ActionListener winButton;
 boolean isWon;
 
     public EndField(boolean isWon) {                    //Constructor
-        this.isWon = isWon;
-        this.setSize(500, 250);
-        makeWindowClosable();
-        createWinLabels();
-        createPlayAgain();
-        this.setLayout(null);
-        this.setVisible(true);
 
+        if (isWon) {
+            this.isWon = isWon;
+            this.setSize(500, 250);
+            makeWindowClosable();
+            createWinLabels();
+            //createPlayAgain();
+            this.setLayout(null);
+            this.setVisible(true);
+        }
+        else {
+            this.isWon = isWon;
+            this.setSize(500, 250);
+            makeWindowClosable();
+            createLoseLabels();
+            //createPlayAgain();
+            this.setLayout(null);
+            this.setVisible(true);   
+        }
         
 
     }
@@ -44,15 +55,27 @@ boolean isWon;
 
     }
 
-    public void createPlayAgain() {
+    
+    public void createLoseLabels() {
 
-        Button win = new Button("Play again");
+        winText = new Label ("Aww you lost!");
+        winText.setBounds(150, 0, 200, 150);
+        
+        this.add(winText);
+
+    }
+
+    
+    
+/*     public void createPlayAgain() {
+
+        StartButton win = new StartButton("Play again", actionlistener.get(3));
         win.setBounds(150, 100, 200, 150);
         
         this.add(win);
 
 
-    }
+    } */
 
     public void setWinButton() {                   //This sets the button press by creating a new action listener
         //ACTION LISTENER 1
