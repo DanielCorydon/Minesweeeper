@@ -54,7 +54,6 @@ public class MineButton extends Button {
             
             System.out.println("Boom goes the mine - You are dead.");
             this.isClicked=true;
-            EndField endgame = new EndField(false);
         
         }
         

@@ -2,6 +2,10 @@ package Minesweeeper;
 
 import java.awt.*;
 import java.util.ArrayList;
+
+import Minesweeeper.Buttons.EndButton;
+import Minesweeeper.Buttons.PlayAgainButton;
+
 import java.awt.event.*;
 
 public class EndField extends Frame {
@@ -13,7 +17,7 @@ ActionListener winButton;
 
 boolean isWon;
 
-    public EndField(boolean isWon) {                    //Constructor
+    public EndField(boolean isWon, MineField minefield) {                    //Constructor
 
         if (isWon) {
             this.isWon = isWon;
@@ -23,6 +27,8 @@ boolean isWon;
             //createPlayAgain();
             this.setLayout(null);
             this.setVisible(true);
+            //this.add(new EndButton());
+            this.add(new PlayAgainButton(minefield, this));
         }
         else {
             this.isWon = isWon;
@@ -31,7 +37,8 @@ boolean isWon;
             createLoseLabels();
             //createPlayAgain();
             this.setLayout(null);
-            this.setVisible(true);   
+            this.setVisible(true);
+            this.add(new PlayAgainButton(minefield, this));   
         }
         
 

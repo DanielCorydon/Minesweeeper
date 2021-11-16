@@ -10,7 +10,7 @@ import java.awt.event.*;
 //      import org.w3c.dom.events.MouseEvent;
 //      ARE THESE TWO USED?
 
-class MineField extends Frame {
+public class MineField extends Frame {
     private int buttonsX;
     private int buttonsY;
     private MouseAdapter buttonPressedRight;
@@ -29,7 +29,8 @@ class MineField extends Frame {
     }
 
     public void initializeField(int bombAmount) {           // Main function which initiatiates the entire field with buttons
-        this.bombAmount = bombAmount;                   
+        this.bombAmount = bombAmount;
+        this.amountCorrectBombs = 0;                   
         this.numList = getRandomList(bombAmount);           // Get list of [bombAmount] random numbers between 0 and buttonX * ButtonsY
         this.bombList = createButtons(numList);             // Make an ArrayList of ArrayLists containing MineButtons
         setNearbyButtons(bombList);                         // Adds the field of NearbyBombs to the existing buttons
@@ -45,6 +46,17 @@ class MineField extends Frame {
             }
         }
         return numList;
+    }
+
+    public int getAmountBombs() {
+        return bombAmount;                  //returns amount of bombs in the minefield
+    }
+
+    public void clearMineField() {          //Clears the minefield
+
+                this.removeAll();
+                initializeField(bombAmount);
+
     }
 
     // Creates an ArrayList of ArrayLists containg boolean values based on the
@@ -144,7 +156,7 @@ class MineField extends Frame {
 
     public boolean gameWon() {
         if (amountCorrectBombs==bombAmount) {
-            EndField end = new EndField(true);              //Checks victory condition and makes new endscreen window
+            EndField end = new EndField(true, this);              //Checks victory condition and makes new endscreen window
             end.setLayout(null);
             end.setVisible(true);
             return true;
