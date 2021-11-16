@@ -43,10 +43,6 @@ public class MineButton extends Button {
         return nearbyBombs;
     }
 
-    public ActionListener getThisAction() {             //This returns the actionlistener which is used for the button press
-        return buttonpress;
-    }
-
     public void buttonClicked() {                       //Method to call when the button is clicked. Should contain three logic statements, one if it is a bomb, one if it has nearby bombs, and one if there are no nearby bombs
         
         if (this.isClicked==false) {                         //Checks if this button is clicked
@@ -93,6 +89,9 @@ public class MineButton extends Button {
                  
             }
         };
+
+        this.addActionListener(buttonpress);
+
     }
 
     public void getNeighbors(ArrayList<MineButton> neighbors, int nearbyBombs) {    //This method gets the nearby button boolean values and stores them in an arraylist.

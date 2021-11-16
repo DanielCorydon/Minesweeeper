@@ -53,7 +53,6 @@ class MineField extends Frame {
             for (int j = 0; j < buttonsY; j++) {
                 boolean isBomb = bombLocations.contains(i*buttonsX+(j));
                 MineButton mineButton = new MineButton(isBomb);
-                mineButton.addActionListener(mineButton.getThisAction());   // Adds left click
                 mineButton.addMouseListener(buttonPressedRight);            // Adds right click
                 buttonList.get(i).add(mineButton); 
                 mineButton.setBounds((i + 1) * 30, (j + 1) * 30, 30, 30);   // Set position and size of button
